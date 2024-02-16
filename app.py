@@ -43,10 +43,6 @@ def replace_most_frequent_color(image, replacement_color):
     return modified_img
 
 
-@app.route('/', methods=['GET'])
-def test():
-    return "Image Color Changer"
-
 @app.route('/test', methods=['GET'])
 def test():
     return "test successful"
