@@ -42,6 +42,55 @@ def replace_most_frequent_color(image, replacement_color):
     
     return modified_img
 
+
+@app.route('/', methods=['GET'])
+def test():
+    htmlCssCode = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Color Changer Text</title>
+    <style>
+        .container {
+            position: relative;
+            width: 300px; /* Adjust width as needed */
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black; /* Default color */
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+
+        .container:hover .text {
+            color: red; /* Change color on hover */
+        }
+    </style>
+    </head>
+    <body>
+
+    <div class="container">
+        <img src="image.jpg" alt="Image" class="image">
+        <div class="text">Hover over me</div>
+    </div>
+
+    </body>
+    </html>
+    """
+
+    return htmlCssCode
+
+
 @app.route('/test', methods=['GET'])
 def test():
     return "test successful"
