@@ -8,6 +8,32 @@ from collections import Counter
 app = Flask(__name__)
 CORS(app)
 
+def crop_image(image_data, crop_width, crop_height):
+    try:
+        # Open the image using PIL (Python Imaging Library)
+        image = Image.open(io.BytesIO(image_data))
+        
+        # Get the dimensions of the original image
+        width, height = image.size
+        
+        # Convert crop_width and crop_height to integers if provided
+        crop_width = int(crop_width) if crop_width else width
+        crop_height = int(crop_height) if crop_height else height
+        
+        # Calculate coordinates for cropping
+        left = (width - crop_width) / 2
+        top = (height - crop_height) / 2
+        right = (width + crop_width) / 2
+        bottom = (height + crop_height) / 2
+        
+        # Crop the image
+        cropped_image = image.crop((left, top, right, bottom))
+        
+        return cropped_image
+    except Exception as e:
+        print("Error:", e)
+        return None
+
 def replace_most_frequent_color(image, replacement_color):
     # Convert the image to RGBA mode (if it's not already in RGBA)
     img = image.convert('RGBA')
@@ -79,6 +105,34 @@ def process_image():
         
         # Return the modified image directly in the response
         return send_file(output_buffer, mimetype='image/png')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/crop_image', methods=['POST'])
+def handle_crop_image():
+    try:
+        # Get the image URL, crop width, and crop height from the request
+        image_url = request.json['image_url']
+        crop_width = request.json['width']
+        crop_height = request.json['height']
+        
+        # Download the image from the URL
+        response = requests.get(image_url)
+        image_data = response.content
+        
+        # Call the function to crop the image
+        cropped_image = crop_image(image_data, crop_width, crop_height)
+        
+        if cropped_image:
+            # Save the cropped image to a BytesIO object
+            cropped_image_io = io.BytesIO()
+            cropped_image.save(cropped_image_io, format='PNG')
+            cropped_image_io.seek(0)
+            
+            # Return the cropped image directly in the response
+            return send_file(cropped_image_io, mimetype='image/png')
+        else:
+            return jsonify({'error': 'Failed to crop image'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
