@@ -8,7 +8,8 @@ from collections import Counter
 app = Flask(__name__)
 CORS(app)
 
-def crop_image(image_data, crop_width, crop_height):
+
+def crop_image(image_data, width_ratio, height_ratio):
     try:
         # Open the image using PIL (Python Imaging Library)
         image = Image.open(io.BytesIO(image_data))
@@ -16,9 +17,9 @@ def crop_image(image_data, crop_width, crop_height):
         # Get the dimensions of the original image
         width, height = image.size
         
-        # Convert crop_width and crop_height to integers if provided
-        crop_width = int(crop_width) if crop_width else width
-        crop_height = int(crop_height) if crop_height else height
+        # Calculate crop width and height based on width and height ratios
+        crop_width = min(width, height * width_ratio / height_ratio)
+        crop_height = min(height, width * height_ratio / width_ratio)
         
         # Calculate coordinates for cropping
         left = (width - crop_width) / 2
@@ -33,6 +34,7 @@ def crop_image(image_data, crop_width, crop_height):
     except Exception as e:
         print("Error:", e)
         return None
+
 
 def replace_most_frequent_color(image, replacement_color):
     # Convert the image to RGBA mode (if it's not already in RGBA)
@@ -113,15 +115,15 @@ def handle_crop_image():
     try:
         # Get the image URL, crop width, and crop height from the request
         image_url = request.json['image_url']
-        crop_width = request.json['width']
-        crop_height = request.json['height']
+        width_ratio = float(request.json['width'])
+        height_ratio = float(request.json['height'])
         
         # Download the image from the URL
         response = requests.get(image_url)
         image_data = response.content
         
         # Call the function to crop the image
-        cropped_image = crop_image(image_data, crop_width, crop_height)
+        cropped_image = crop_image(image_data,width_ratio,height_ratio)
         
         if cropped_image:
             # Save the cropped image to a BytesIO object
