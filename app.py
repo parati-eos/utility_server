@@ -76,6 +76,12 @@ def replace_most_frequent_color(image, replacement_color):
 def test():
     return "test successful"
 
+@app.route('/mongodb', methods=['POST'])
+def test_route():
+    data = request.data
+    print('Received data:', data)
+    return jsonify({'message': 'Data received successfully'}), 200
+
 @app.route('/process_image', methods=['POST'])
 def process_image():
     try:
