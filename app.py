@@ -91,9 +91,9 @@ def test():
 
 @app.route('/mongodb', methods=['POST'])
 def mongodb():
-    data = request.json
+    data = request.data
     try:
-        json_data =  data #json.loads(data)
+        json_data =  json.loads(data)
         print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
