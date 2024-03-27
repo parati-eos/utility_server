@@ -4,12 +4,25 @@ from PIL import Image
 import requests
 import io
 from collections import Counter
+from flask import Flask, request, jsonify
+import json
+import gspread
+from google.oauth2 import service_account
+from util import json_to_array
+
 
 app = Flask(__name__)
 CORS(app)
 
 from PIL import Image
 import io
+
+def get_google_sheet():
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    credentials = service_account.Credentials.from_service_account_file('credentials.json', scopes=scope)
+    client = gspread.authorize(credentials)
+    sheet = client.open_by_key('1ibCX9dIotv0oKB_HNTEY7QpxWwh8_ANa7H3fcWIYiGc').sheet1  # Replace with your actual spreadsheet key
+    return sheet
 
 def crop_image_bottom(image_data, width_ratio, height_ratio):
     try:
@@ -78,9 +91,28 @@ def test():
 
 @app.route('/mongodb', methods=['POST'])
 def test_route():
-    data = request.data
-    print('Received data:', data)
-    return jsonify({'message': 'Data received successfully'}), 200
+    data = request.data.decode('utf-8')
+    try:
+        json_data = json.loads(data) 
+        user_id = json_data.get('user', {}).get('userId')
+        sheet = get_google_sheet()
+        print(sheet)
+        cell = sheet.find(user_id) if user_id else None
+        if cell:
+            row = cell.row
+            arr = json_to_array(json_data)
+            cell_list = sheet.range('A' + str(row) + ':AZ'+ str(row))
+            for i in range(len(arr)):
+                cell.value = arr[i]
+           
+            # Prepare the values to update
+            sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
+        else:
+            sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
+
+        return jsonify({'message': 'Data received and processed successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 @app.route('/process_image', methods=['POST'])
 def process_image():
@@ -146,4 +178,4 @@ def handle_crop_image_bottom():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)
