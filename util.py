@@ -44,7 +44,8 @@ def json_to_array(data_dict):
     planned_raise = data_dict['financialInfo']['plannedRaise']
     use_of_funds = data_dict['financialInfo']['useOfFunds']
     percentage = data_dict['financialInfo']['percentage']
-
+    
+    print(testimonials[0][0]["name"])
     arr = [
     user_id,
     submission_id,
@@ -90,16 +91,16 @@ def json_to_array(data_dict):
     'timeline 7',
     'timeline 8',
     case_studies ,
-    testimonials[0] if len(testimonials) > 0 else '',
+    testimonials[0][0]["name"] if len(testimonials) > 0 else '',
     'testimonials Name 0',
     'testimonials Desc 0',
-    testimonials[1] if len(testimonials) > 1 else '',
+    testimonials[1][0]["name"] if len(testimonials) > 1 else '',
     'testimonials Name 1',
     'testimonials Desc 1',
-    testimonials[2] if len(testimonials) > 2 else '',
+    testimonials[2][0]["name"] if len(testimonials) > 2 else '',
     'testimonials Name 2',
     'testimonials Desc 2',
-    testimonials[3] if len(testimonials) > 3 else '',
+    testimonials[3][0]["name"] if len(testimonials) > 3 else '',
     'testimonials Name 3',
     'testimonials Desc 3',
     competitors[0] if len(competitors) > 0 else '',
@@ -139,13 +140,13 @@ def json_to_array(data_dict):
     'Experience 5',
     'linkden 5',
     'image 5',
-    financial_snapshot,
-    website_link ,
-    linkedin_link ,
-    contact_email,
-    contact_phone ,
-    planned_raise ,
-    use_of_funds ,
-    percentage 
+    # financial_snapshot,
+    # website_link ,
+    # linkedin_link ,
+    # contact_email,
+    # contact_phone ,
+    # planned_raise ,
+    # use_of_funds ,
+    # percentage 
     ]
     return arr

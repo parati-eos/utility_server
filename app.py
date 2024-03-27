@@ -90,29 +90,26 @@ def test():
     return "test successful"
 
 @app.route('/mongodb', methods=['POST'])
-def test_route():
+def mongodb():
     data = request.data
     try:
         json_data = json.loads(data) 
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
-        print(sheet)
         cell = sheet.find(user_id) if user_id else None
         if cell:
             row = cell.row
             arr = json_to_array(json_data)
-            cell_list = sheet.range('A' + str(row) + ':AZ'+ str(row))
+            cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
             for i in range(len(arr)):
-                cell.value = arr[i]
-           
-            # Prepare the values to update
+                cell_list[i].value = arr[i]
             sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
 
         return jsonify({'message': 'Data received and processed successfully'}), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'error hai': str(e)}), 400
 
 @app.route('/process_image', methods=['POST'])
 def process_image():
