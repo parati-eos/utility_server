@@ -67,7 +67,7 @@ def json_to_array(data_dict):
     SAM_growth_rate,
     product_overview,
     product_roadmap,
-    # product_roadmap_description,
+    product_roadmap_description,
     technical_architecture,
     app_type ,
     mobile_screenshots[0] if len(mobile_screenshots) > 0 else '',
@@ -93,7 +93,7 @@ def json_to_array(data_dict):
     testimonials[0] if len(testimonials) > 0 else '',
     'testimonials Name 0',
     'testimonials Desc 0',
-    testimonials[1] if len(testimonials) > 1 else ''
+    testimonials[1] if len(testimonials) > 1 else '',
     'testimonials Name 1',
     'testimonials Desc 1',
     testimonials[2] if len(testimonials) > 2 else '',
@@ -112,32 +112,32 @@ def json_to_array(data_dict):
     team_members[0] if len(team_members) > 0 else '',
     'title 0',
     'Experience 0',
-    'linkden 0'
+    'linkden 0',
     'image 0',
     team_members[1] if len(team_members) > 1 else '',
     'title 1',
     'Experience 1',
-    'linkden 1'
+    'linkden 1',
     'image 1',
     team_members[2] if len(team_members) > 2 else '',
     'title 2',
     'Experience 2',
-    'linkden 2'
+    'linkden 2',
     'image 2',
     team_members[3] if len(team_members) > 3 else '',
     'title 3',
     'Experience 3',
-    'linkden 3'
+    'linkden 3',
     'image 3',
     team_members[4] if len(team_members) > 4 else '',
     'title 4',
     'Experience 4',
-    'linkden 4'
+    'linkden 4',
     'image 4',
-    team_members[5] if len(team_members) > 5 else ''
+    team_members[5] if len(team_members) > 5 else '',
     'title 5',
     'Experience 5',
-    'linkden 5'
+    'linkden 5',
     'image 5',
     financial_snapshot,
     website_link ,
