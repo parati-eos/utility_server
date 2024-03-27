@@ -94,6 +94,7 @@ def mongodb():
     data = request.data
     try:
         json_data = json.loads(data)
+        print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
         cell = sheet.find(user_id) if user_id else None
