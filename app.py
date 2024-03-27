@@ -94,7 +94,7 @@ def mongodb():
     data = request.data.decode("utf-8")
     print(data)
     try:
-        json_data =  json.loads(data)
+        json_data =  data #json.loads(data)
         print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
