@@ -94,7 +94,6 @@ def test_route():
     data = request.data
     try:
         json_data = json.loads(data)
-        print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
         print(sheet)
