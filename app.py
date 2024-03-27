@@ -91,7 +91,7 @@ def test():
 
 @app.route('/mongodb', methods=['POST'])
 def mongodb():
-    data = request.data
+    data = request.data.decode("utf-8")
     print(data)
     try:
         json_data =  json.loads(data)
