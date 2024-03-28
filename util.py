@@ -46,43 +46,42 @@ def json_to_array(data_dict):
     percentage = data_dict['financialInfo']['percentage']
     print((testimonials))
     arr = [
-    user_id,
-    submission_id,
-    submission_date,
-    company_name,
-    tagline ,
-    logo_path,
-    primary_color,
-    secondary_color,
-    establishment_year,
-    company_overview ,
-    problem_description,
-    solution_description,
-    sector,
-    other_sector,
-    market_description ,
-    TAM,
-    TAM_growth_rate ,
-    SAM,
-    SAM_growth_rate,
-    product_overview,
-    product_roadmap,
-    product_roadmap_description,
-    technical_architecture,
-    app_type ,
-    mobile_screenshots[0] if len(mobile_screenshots) > 0 else '',
-    mobile_screenshots[1] if len(mobile_screenshots) > 1 else '',
-    mobile_screenshots[2] if len(mobile_screenshots) > 2 else '',
-    web_screenshots[0] if len(web_screenshots) > 0 else '',
-    web_screenshots[1] if len(web_screenshots) > 1 else '',
-    web_screenshots[2] if len(web_screenshots) > 2 else '',
-    business_model ,
-    key_stakeholders ,
-    customer_persona,
-    go_to_market_strategy ,
+    user_id, #
+    submission_id,#
+    submission_date, #
+    company_name,#
+    tagline ,#
+    logo_path,#
+    primary_color,#
+    secondary_color,#
+    establishment_year,#
+    company_overview ,#
+    problem_description,#
+    solution_description,#
+    sector,#
+    other_sector,#
+    market_description ,#
+    TAM,#
+    TAM_growth_rate ,#
+    SAM,#
+    SAM_growth_rate,#
+    product_overview,#
+    product_roadmap_description,#
+    technical_architecture,#
+    app_type ,#
+    mobile_screenshots[0] if len(mobile_screenshots) > 0 else '',#
+    mobile_screenshots[1] if len(mobile_screenshots) > 1 else '',#
+    mobile_screenshots[2] if len(mobile_screenshots) > 2 else '',#
+    web_screenshots[0] if len(web_screenshots) > 0 else '',#
+    web_screenshots[1] if len(web_screenshots) > 1 else '',#
+    web_screenshots[2] if len(web_screenshots) > 2 else '',#
+    business_model ,#
+    key_stakeholders ,#
+    customer_persona,#
+    go_to_market_strategy ,#
     track_record , # ther is some confusion in track record
     'timeline 1',
-    'timeline 1',
+    'timeline 2',
     'timeline 3',
     'timeline 4',
     'timeline 5',
@@ -90,18 +89,18 @@ def json_to_array(data_dict):
     'timeline 7',
     'timeline 8',
     case_studies ,
+    testimonials[0][0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
     testimonials[0][0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
-    'testimonials Name 0',
-    'testimonials Desc 0',
-    testimonials[1][0]["name"] if len(testimonials) > 1 else '',
-    'testimonials Name 1',
-    'testimonials Desc 1',
-    testimonials[2][0]["name"] if len(testimonials) > 2 else '',
-    'testimonials Name 2',
-    'testimonials Desc 2',
-    testimonials[3][0]["name"] if len(testimonials) > 3 else '',
-    'testimonials Name 3',
-    'testimonials Desc 3',
+    testimonials[0][0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[1][0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[1][0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[1][0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[2][0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[2][0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[2][0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[3][0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[3][0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[3][0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
     competitors[0] if len(competitors) > 0 else '',
     competitors[1] if len(competitors) > 1 else '',
     competitors[2] if len(competitors) > 2 else '',

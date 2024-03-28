@@ -20,8 +20,11 @@ def get_google_sheet():
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     credentials = service_account.Credentials.from_service_account_file('credentials.json', scopes=scope)
     client = gspread.authorize(credentials)
-    sheet = client.open_by_key('1ibCX9dIotv0oKB_HNTEY7QpxWwh8_ANa7H3fcWIYiGc').sheet1  # Replace with your actual spreadsheet key
-    return sheet
+    sheet = client.open_by_key('1ibCX9dIotv0oKB_HNTEY7QpxWwh8_ANa7H3fcWIYiGc')
+    print(sheet)
+    space_name_sheet = sheet.worksheet('Sheet2')
+    print(space_name_sheet)
+    return space_name_sheet
 
 def crop_image_bottom(image_data, width_ratio, height_ratio):
     try:
@@ -91,12 +94,8 @@ def test():
 @app.route('/mongodb', methods=['POST'])
 def mongodb():
     data = request.data
-    print(data)
     try:
         json_data = json.loads(data)
-        print(json_data)
-        json_data =  json.loads(data)
-        print(json_data)
         submissionId = json_data.get('user', {}).get('submissionId')
         sheet = get_google_sheet()
         cell = sheet.find(submissionId) if submissionId else None
