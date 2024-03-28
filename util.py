@@ -41,10 +41,25 @@ def json_to_array(data_dict):
     contact_email = data_dict['contactInfo']['contactEmail']
     contact_phone = data_dict['contactInfo']['contactPhone']
     financial_snapshot = data_dict['financialInfo']['financialSnapshot']
+    revenue_cost = data_dict['financialInfo']['revenueCost']
     planned_raise = data_dict['financialInfo']['plannedRaise']
     use_of_funds = data_dict['financialInfo']['useOfFunds']
     percentage = data_dict['financialInfo']['percentage']
-    print((testimonials))
+
+    revenues = [""] * 10
+    costs = [""] * 10 
+    for entry in revenue_cost:
+        year = int(entry["year"])
+        index = year - 2019
+        if 0 <= index < len(revenues):
+            revenues[index] = entry["revenue"]
+            costs[index] = entry["cost"]
+
+    
+
+
+
+
     arr = [
     user_id, #
     submission_id,#
@@ -79,28 +94,29 @@ def json_to_array(data_dict):
     key_stakeholders ,#
     customer_persona,#
     go_to_market_strategy ,#
-    track_record , # ther is some confusion in track record
-    'timeline 1',
-    'timeline 2',
-    'timeline 3',
-    'timeline 4',
-    'timeline 5',
-    'timeline 6',
-    'timeline 7',
-    'timeline 8',
+    # track_record , # ther is some confusion in track record
+    track_record[0]["year1"] if len(track_record) > 0 and track_record[0] != '' else '',
+    track_record[0]["year2"] if len(track_record) > 0 and track_record[0] != '' else '',
+    track_record[0]["TR"] if len(track_record) > 0 and track_record[0] != '' else '',
+    track_record[1]["year1"] if len(track_record) > 1 and track_record[1] != '' else '',
+    track_record[1]["year2"] if len(track_record) > 1 and track_record[1] != '' else '',
+    track_record[1]["TR"] if len(track_record) > 1 and track_record[1] != '' else '',
+    track_record[2]["year1"] if len(track_record) > 2 and track_record[2] != '' else '',
+    track_record[2]["year2"] if len(track_record) > 2 and track_record[2] != '' else '',
+    track_record[2]["TR"] if len(track_record) > 2 and track_record[2] != '' else '',
     case_studies ,
-    testimonials[0][0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
-    testimonials[0][0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
-    testimonials[0][0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
-    testimonials[1][0]["testimonial"] if len(testimonials) > 1 and testimonials[0] != '' else '',
-    testimonials[1][0]["name"] if len(testimonials) > 1 and testimonials[0] != '' else '',
-    testimonials[1][0]["designation"] if len(testimonials) > 1 and testimonials[0] != '' else '',
-    testimonials[2][0]["testimonial"] if len(testimonials) > 2 and testimonials[0] != '' else '',
-    testimonials[2][0]["name"] if len(testimonials) > 2 and testimonials[0] != '' else '',
-    testimonials[2][0]["designation"] if len(testimonials) > 2 and testimonials[0] != '' else '',
-    testimonials[3][0]["testimonial"] if len(testimonials) > 3 and testimonials[0] != '' else '',
-    testimonials[3][0]["name"] if len(testimonials) > 3 and testimonials[0] != '' else '',
-    testimonials[3][0]["designation"] if len(testimonials) > 3 and testimonials[0] != '' else '',
+    testimonials[0]["testimonial"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[0]["name"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[0]["designation"] if len(testimonials) > 0 and testimonials[0] != '' else '',
+    testimonials[1]["testimonial"] if len(testimonials) > 1 and testimonials[0] != '' else '',
+    testimonials[1]["name"] if len(testimonials) > 1 and testimonials[0] != '' else '',
+    testimonials[1]["designation"] if len(testimonials) > 1 and testimonials[0] != '' else '',
+    testimonials[2]["testimonial"] if len(testimonials) > 2 and testimonials[0] != '' else '',
+    testimonials[2]["name"] if len(testimonials) > 2 and testimonials[0] != '' else '',
+    testimonials[2]["designation"] if len(testimonials) > 2 and testimonials[0] != '' else '',
+    testimonials[3]["testimonial"] if len(testimonials) > 3 and testimonials[0] != '' else '',
+    testimonials[3]["name"] if len(testimonials) > 3 and testimonials[0] != '' else '',
+    testimonials[3]["designation"] if len(testimonials) > 3 and testimonials[0] != '' else '',
     competitors[0] if len(competitors) > 0 else '',
     competitors[1] if len(competitors) > 1 else '',
     competitors[2] if len(competitors) > 2 else '',
@@ -108,44 +124,68 @@ def json_to_array(data_dict):
     competitors[4] if len(competitors) > 4 else '',
     competitors[5] if len(competitors) > 5 else '',
     competitive_diff,
-    team_members[0] if len(team_members) > 0 else '',
-    'title 0',
-    'Experience 0',
-    'linkden 0',
-    'image 0',
-    team_members[1] if len(team_members) > 1 else '',
-    'title 1',
-    'Experience 1',
-    'linkden 1',
-    'image 1',
-    team_members[2] if len(team_members) > 2 else '',
-    'title 2',
-    'Experience 2',
-    'linkden 2',
-    'image 2',
-    team_members[3] if len(team_members) > 3 else '',
-    'title 3',
-    'Experience 3',
-    'linkden 3',
-    'image 3',
-    team_members[4] if len(team_members) > 4 else '',
-    'title 4',
-    'Experience 4',
-    'linkden 4',
-    'image 4',
-    team_members[5] if len(team_members) > 5 else '',
-    'title 5',
-    'Experience 5',
-    'linkden 5',
-    'image 5',
+    team_members[0]['name'] if len(team_members) > 0 else '',
+    team_members[0]['title'] if len(team_members) > 0 else '',
+    team_members[0]['experience'] if len(team_members) > 0 else '',
+    team_members[0]['linkedin'] if len(team_members) > 0 else '',
+    "test",# team_members[0]['photo'] if len(team_members) > 0 else '',
+    team_members[1]['name'] if len(team_members) > 1 else '',
+    team_members[1]['title'] if len(team_members) > 1 else '',
+    team_members[1]['experience'] if len(team_members) > 1 else '',
+    team_members[1]['linkedin'] if len(team_members) > 1 else '',
+    "test",# team_members[1]['photo'] if len(team_members) > 1 else '',
+    team_members[2]['name'] if len(team_members) > 2 else '',
+    team_members[2]['title'] if len(team_members) > 2 else '',
+    team_members[2]['experience'] if len(team_members) > 2 else '',
+    team_members[2]['linkedin'] if len(team_members) > 2 else '',
+    "test",# team_members[2]['photo'] if len(team_members) > 2 else '',
+    team_members[3]['name'] if len(team_members) > 3 else '',
+    team_members[3]['title'] if len(team_members) > 3 else '',
+    team_members[3]['experience'] if len(team_members) > 3 else '',
+    team_members[3]['linkedin'] if len(team_members) > 3 else '',
+    "test",# team_members[3]['photo'] if len(team_members) > 3 else '',
+    team_members[4]['name'] if len(team_members) > 4 else '',
+    team_members[4]['title'] if len(team_members) > 4 else '',
+    team_members[4]['experience'] if len(team_members) > 4 else '',
+    team_members[4]['linkedin'] if len(team_members) > 4 else '',
+    "test",# team_members[4]['photo'] if len(team_members) > 4 else '',
+    team_members[5]['name'] if len(team_members) > 5 else '',
+    team_members[5]['title'] if len(team_members) > 5 else '',
+    team_members[5]['experience'] if len(team_members) > 5 else '',
+    team_members[5]['linkedin'] if len(team_members) > 5 else '',
+    "test",# team_members[5]['photo'] if len(team_members) > 5 else '',
     financial_snapshot,
+    revenues[0],
+    revenues[1],
+    revenues[2],
+    revenues[3],
+    revenues[4],
+    revenues[5],
+    revenues[6],
+    revenues[7],
+    revenues[8],
+    revenues[9],
+    costs[0],
+    costs[1],
+    costs[2],
+    costs[3],
+    costs[4],
+    costs[5],
+    costs[6],
+    costs[7],
+    costs[8],
+    costs[9],
+    planned_raise ,
+    use_of_funds[0]['percentage'] if len(use_of_funds) > 0 else '',
+    use_of_funds[1]['percentage'] if len(use_of_funds) > 1 else '',
+    use_of_funds[2]['percentage'] if len(use_of_funds) > 2 else '',
+    use_of_funds[3]['percentage'] if len(use_of_funds) > 3 else '',
+    use_of_funds[4]['percentage'] if len(use_of_funds) > 4 else '',
     website_link ,
     linkedin_link ,
     contact_email,
-    contact_phone ,
-    planned_raise ,
-    use_of_funds ,
-    percentage 
+    contact_phone 
+    # percentage 
     ]
     return arr
 
