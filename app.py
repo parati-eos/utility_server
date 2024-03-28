@@ -97,9 +97,9 @@ def mongodb():
         print(json_data)
         json_data =  json.loads(data)
         print(json_data)
-        user_id = json_data.get('user', {}).get('userId')
+        submissionId = json_data.get('user', {}).get('submissionId')
         sheet = get_google_sheet()
-        cell = sheet.find(user_id) if user_id else None
+        cell = sheet.find(submissionId) if submissionId else None
         if cell:
             row = cell.row
             arr = json_to_array(json_data)
