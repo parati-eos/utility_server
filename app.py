@@ -91,8 +91,11 @@ def test():
 @app.route('/mongodb', methods=['POST'])
 def mongodb():
     data = request.data
+    print(data)
     try:
         json_data = json.loads(data)
+        print(json_data)
+        json_data =  json.loads(data)
         print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
@@ -102,7 +105,7 @@ def mongodb():
             arr = json_to_array(json_data)
             cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
             for i in range(len(arr)):
-                cell_list[i].value = arr[i]  
+                cell_list[i].value = arr[i]
             sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
