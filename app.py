@@ -4,7 +4,6 @@ from PIL import Image
 import requests
 import io
 from collections import Counter
-from flask import Flask, request, jsonify
 import json
 import gspread
 from google.oauth2 import service_account
@@ -94,6 +93,7 @@ def mongodb():
     data = request.data
     try:
         json_data = json.loads(data)
+        print(json_data)
         user_id = json_data.get('user', {}).get('userId')
         sheet = get_google_sheet()
         cell = sheet.find(user_id) if user_id else None
@@ -102,7 +102,7 @@ def mongodb():
             arr = json_to_array(json_data)
             cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
             for i in range(len(arr)):
-                cell_list[i].value = arr[i]
+                cell_list[i].value = arr[i]  
             sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
