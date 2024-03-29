@@ -20,9 +20,9 @@ def get_google_sheet():
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     credentials = service_account.Credentials.from_service_account_file('credentials.json', scopes=scope)
     client = gspread.authorize(credentials)
-    sheet = client.open_by_key('1ibCX9dIotv0oKB_HNTEY7QpxWwh8_ANa7H3fcWIYiGc')
+    sheet = client.open_by_key('1huVEcxx5ACTgRv7X-OcikIZfSb5KCaKAQ63IQhm2ZLY')
     print(sheet)
-    space_name_sheet = sheet.worksheet('Sheet2')
+    space_name_sheet = sheet.worksheet('Native Form Responses')
     print(space_name_sheet)
     return space_name_sheet
 
