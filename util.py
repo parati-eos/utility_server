@@ -1,8 +1,11 @@
+import datetime
+
+current_datetime = datetime.datetime.now()
 
 def json_to_array(data_dict):
     user_id = data_dict["user"]["userId"]
     submission_id = data_dict['user']['submissionId']
-    submission_date = 'test'
+    submission_date = current_datetime
     company_name = data_dict['about']['companyName']
     tagline = data_dict['about']['tagline']
     logo_path = data_dict['about']['logo']
