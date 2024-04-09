@@ -8,7 +8,7 @@ import json
 import gspread
 from google.oauth2 import service_account
 from util import json_to_array
-
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -91,6 +91,11 @@ def replace_most_frequent_color(image, replacement_color):
 @app.route('/test', methods=['GET'])
 def test():
     return "test successful"
+
+@app.route('/time')
+def get_current_date():
+    current_date = datetime.now()
+    return f'Current date: {current_date}'
 
 @app.route('/mongodb', methods=['POST'])
 def mongodb():

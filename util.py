@@ -1,7 +1,5 @@
-# import datetime
-
-# current_datetime = datetime.datetime.now()
-
+from datetime import datetime
+current_date = datetime.now()
 def json_to_array(data_dict):
     user_id = data_dict["user"]["userId"]
     submission_id = data_dict['user']['submissionId']
@@ -57,8 +55,6 @@ def json_to_array(data_dict):
         if 0 <= index < len(revenues):
             revenues[index] = entry["revenue"]
             costs[index] = entry["cost"]
-
-    
     productAndDevelopment = []
     marketingAndSales = []
     capex = []
@@ -76,8 +72,6 @@ def json_to_array(data_dict):
             businessOperation.append(item["percentage"])
         elif item["use"] == "Team Salaries":
             teamSalaries.append(item["percentage"])
-
-
 
     arr = [
     user_id, #
@@ -207,7 +201,6 @@ def json_to_array(data_dict):
     linkedin_link ,
     contact_email,
     contact_phone 
-    # percentage 
     ]
     return arr
 
