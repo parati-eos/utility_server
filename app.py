@@ -12,7 +12,7 @@ from util import json_to_array
 
 app = Flask(__name__)
 CORS(app)
-app.config['TIMEOUT'] = 60
+app.config['TIMEOUT'] = 1000
 
 from PIL import Image
 import io
