@@ -1,5 +1,5 @@
 from datetime import datetime
-current_date = datetime.now()
+current_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 def json_to_array(data_dict):
     user_id = data_dict["user"]["userId"]
     submission_id = data_dict['user']['submissionId']
