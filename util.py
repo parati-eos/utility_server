@@ -50,28 +50,11 @@ def json_to_array(data_dict):
     revenues = [""] * 10
     costs = [""] * 10 
     for entry in revenue_cost:
-        year = int(entry["year"])
+        year = int(entry["year"]) if entry["year"] != "" else 0
         index = year - 2019
         if 0 <= index < len(revenues):
             revenues[index] = entry["revenue"]
             costs[index] = entry["cost"]
-    productAndDevelopment = []
-    marketingAndSales = []
-    capex = []
-    businessOperation = []
-    teamSalaries = []
-
-    for item in use_of_funds:
-        if item["use"] == "Product and Development":
-            productAndDevelopment.append(item["percentage"])
-        elif item["use"] == "Marketing and Sales":
-            marketingAndSales.append(item["percentage"])
-        elif item["use"] == "Capex":
-            capex.append(item["percentage"])
-        elif item["use"] == "Business Operation":
-            businessOperation.append(item["percentage"])
-        elif item["use"] == "Team Salaries":
-            teamSalaries.append(item["percentage"])
 
     arr = [
     user_id, #
@@ -192,11 +175,11 @@ def json_to_array(data_dict):
     costs[8],
     costs[9],
     planned_raise ,
-    productAndDevelopment[0] if len( productAndDevelopment) > 0 else '',
-    marketingAndSales[0] if len(marketingAndSales) > 0 else '',
-    capex[0] if len(capex) > 0 else '',
-    businessOperation[0] if len(businessOperation) > 0 else '',
-    teamSalaries[0] if len(teamSalaries) > 0 else '',
+    use_of_funds[0]['percentage'] if len(use_of_funds) > 0 else '',
+    use_of_funds[1]['percentage'] if len(use_of_funds) > 0 else '',
+    use_of_funds[2]['percentage'] if len(use_of_funds) > 0 else '',
+    use_of_funds[3]['percentage'] if len(use_of_funds) > 0 else '',
+    use_of_funds[4]['percentage'] if len(use_of_funds) > 0 else '',
     website_link ,
     linkedin_link ,
     contact_email,
