@@ -3,6 +3,7 @@ from flask_cors import CORS
 from PIL import Image
 import requests
 import io
+import time
 from collections import Counter
 import json
 import gspread
@@ -12,8 +13,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
-app.config['TIMEOUT'] = 1000
-
 from PIL import Image
 import io
 
@@ -100,6 +99,7 @@ def get_current_date():
 @app.route('/mongodb', methods=['POST'])
 def mongodb():
     data = request.data
+    start_time = time.time()  # Record the start time
     try:
         json_data = json.loads(data)
         submissionId = json_data.get('user', {}).get('submissionId')
@@ -115,8 +115,14 @@ def mongodb():
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
 
+        # Log success and execution time
+        execution_time = time.time() - start_time
+        print(f"Data processed successfully. Time taken: {execution_time:.2f} seconds")
         return jsonify({'message': 'Data received and processed successfully'}), 200
     except Exception as e:
+        # Log the error and execution time
+        execution_time = time.time() - start_time
+        app.logger.error(f"Error: {str(e)}. Time taken: {execution_time:.2f} seconds")
         return jsonify({'error hai': str(e)}), 400
 
 @app.route('/process_image', methods=['POST'])
