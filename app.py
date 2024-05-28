@@ -16,13 +16,13 @@ CORS(app)
 from PIL import Image
 import io
 
-def get_google_sheet():
+def get_google_sheet(SheetName,SheetId):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     credentials = service_account.Credentials.from_service_account_file('credentials.json', scopes=scope)
     client = gspread.authorize(credentials)
-    sheet = client.open_by_key('1huVEcxx5ACTgRv7X-OcikIZfSb5KCaKAQ63IQhm2ZLY')
+    sheet = client.open_by_key(SheetId)
     print(sheet)
-    space_name_sheet = sheet.worksheet('Native Form Responses')
+    space_name_sheet = sheet.worksheet(SheetName) 
     print(space_name_sheet)
     return space_name_sheet
 
@@ -103,10 +103,41 @@ def mongodb():
     try:
         json_data = json.loads(data)
         submissionId = json_data.get('user', {}).get('submissionId')
-        sheet = get_google_sheet()
+        sheet = get_google_sheet('Native Form Responses','1huVEcxx5ACTgRv7X-OcikIZfSb5KCaKAQ63IQhm2ZLY')
         cell = sheet.find(submissionId) if submissionId else None
         if cell:
             row = cell.row
+            arr = json_to_array(json_data)
+            cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
+            for i in range(len(arr)):
+                cell_list[i].value = arr[i]
+            sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
+        else:
+            sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
+
+        # Log success and execution time
+        execution_time = time.time() - start_time
+        print(f"Data processed successfully. Time taken: {execution_time:.2f} seconds")
+        return jsonify({'message': 'Data received and processed successfully'}), 200
+    except Exception as e:
+        # Log the error and execution time
+        execution_time = time.time() - start_time
+        app.logger.error(f"Error: {str(e)}. Time taken: {execution_time:.2f} seconds")
+        return jsonify({'error hai': str(e)}), 400
+    
+    
+@app.route('/mongodb_short', methods=['POST'])
+def mongodb_short():
+    data = request.data
+    start_time = time.time()  # Record the start time
+    try:
+        json_data = json.loads(data)
+        submissionId = json_data.get('user', {}).get('submissionId')
+        sheet = get_google_sheet('Native Form Responses','1khwJvLdnVLJe5OF96zmOAor7ouBNyMBbxnMJ4LDUeUg')
+        cell = sheet.find(submissionId) if submissionId else None
+        if cell:
+            row = cell.row
+            print(row)
             arr = json_to_array(json_data)
             cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
             for i in range(len(arr)):
