@@ -185,6 +185,7 @@ def json_to_array(data_dict):
     contact_email,
     contact_phone 
     ]
+    print(arr)
     return arr
 
 
