@@ -137,12 +137,13 @@ def mongodb_short():
         cell = sheet.find(submissionId) if submissionId else None
         if cell:
             row = cell.row
-            print(row)
             arr = json_to_array(json_data)
-            cell_list = sheet.range('A' + str(row) + ':MZ'+ str(row))
+            cell_list1 = sheet.range('A' + str(row) + ':MZ'+ str(row))
+            print(cell_list1)
             for i in range(len(arr)):
-                cell_list[i].value = arr[i]
-            sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
+                cell_list1[i].value = arr[i]
+            sheet.update_cells(cell_list1, value_input_option='USER_ENTERED')  # Update the fields accordingly
+            print(cell_list1)
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
 
