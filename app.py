@@ -9,6 +9,7 @@ import json
 import gspread
 from google.oauth2 import service_account
 from util import json_to_array
+from ResponseUtility import Response_json_to_array
 from datetime import datetime
 
 app = Flask(__name__)
@@ -129,7 +130,7 @@ def mongodb():
 @app.route('/mongodb_short', methods=['POST'])
 def mongodb_short():
     data = request.data
-    start_time = time.time()  # Record the start time
+    start_time = time.time()  
     try:
         json_data = json.loads(data)
         submissionId = json_data.get('user', {}).get('submissionId')
@@ -139,11 +140,10 @@ def mongodb_short():
             row = cell.row
             arr = json_to_array(json_data)
             cell_list1 = sheet.range('A' + str(row) + ':MZ'+ str(row))
-            print(cell_list1)
+
             for i in range(len(arr)):
                 cell_list1[i].value = arr[i]
-            sheet.update_cells(cell_list1, value_input_option='USER_ENTERED')  # Update the fields accordingly
-            print(cell_list1)
+            sheet.update_cells(cell_list1, value_input_option='USER_ENTERED')  # Update the fields accordingl
         else:
             sheet.append_row(json_to_array(json_data))  # Update the fields accordingly
 
@@ -153,6 +153,40 @@ def mongodb_short():
         return jsonify({'message': 'Data received and processed successfully'}), 200
     except Exception as e:
         # Log the error and execution time
+        execution_time = time.time() - start_time
+        app.logger.error(f"Error: {str(e)}. Time taken: {execution_time:.2f} seconds")
+        return jsonify({'error hai': str(e)}), 400
+    
+@app.route('/Response', methods=['POST'])
+def Response():
+    data = request.data
+    start_time = time.time()  
+    try:
+        json_data = json.loads(data)
+        submissionId = json_data.get('user', {}).get('submissionId')
+        sheet = get_google_sheet('DB - GPT','1DLb_m5RtRZGdabOzMRJ5K3rbKeBhfKW3s-k-6BKc0h0')
+        cell = sheet.find(submissionId) if submissionId else None
+        print(cell)
+        if cell:
+            row = cell.row
+            
+            arr = Response_json_to_array(json_data)
+            cell_list = sheet.range('A' + str(row) + ':QE'+ str(row))
+            
+            for i in range(len(arr)):
+                cell_list[i].value = arr[i]
+        
+            sheet.update_cells(cell_list, value_input_option='USER_ENTERED')  # Update the fields accordingly
+        else:
+            print(Response_json_to_array(json_data))
+            sheet.append_row(Response_json_to_array(json_data))  # Update the fields accordingly
+
+        # Log success and execution time
+        execution_time = time.time() - start_time
+        print(f"Data processed successfully. Time taken: {execution_time:.2f} seconds")
+        return jsonify(Response_json_to_array(json_data)), 200
+    except Exception as e:
+       
         execution_time = time.time() - start_time
         app.logger.error(f"Error: {str(e)}. Time taken: {execution_time:.2f} seconds")
         return jsonify({'error hai': str(e)}), 400
