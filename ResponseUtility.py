@@ -20,6 +20,9 @@ def Response_json_to_array(data):
     s100 = data.get('about', {}).get('colorS100', '')
     f_s100 = data.get('about', {}).get('colorF_S100', '')
     f_p100 = data.get('about', {}).get('colorF_P100', '')
+    f_p75s25 = data.get('about', {}).get('colorF_P75S25', '')
+    f_p50s50 = data.get('about', {}).get('colorF_P50S50', '')
+    f_p25s75 = data.get('about', {}).get('colorF_P25S75', '')
     scl = data.get('about', {}).get('SCL', '')
     scd = data.get('about', {}).get('SCD', '')
     tag_line = data.get('about', {}).get('tagLine', '')
@@ -485,8 +488,11 @@ def Response_json_to_array(data):
     p50_s50,
     p25_s75,
     s100,
-    f_s100,
     f_p100,
+    f_p75s25,
+    f_p50s50,
+    f_p25s75,
+    f_s100,
     scl,
     scd,
     tag_line,

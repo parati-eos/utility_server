@@ -19,7 +19,7 @@ import io
 
 def get_google_sheet(SheetName,SheetId):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    credentials = service_account.Credentials.from_service_account_file('credentials.json', scopes=scope)
+    credentials = service_account.Credentials.from_service_account_file('config/credentials.json', scopes=scope)
     client = gspread.authorize(credentials)
     sheet = client.open_by_key(SheetId)
     print(sheet)
@@ -171,7 +171,7 @@ def Response():
             row = cell.row
             
             arr = Response_json_to_array(json_data)
-            cell_list = sheet.range('A' + str(row) + ':QE'+ str(row))
+            cell_list = sheet.range('A' + str(row) + ':QG'+ str(row))
             
             for i in range(len(arr)):
                 cell_list[i].value = arr[i]
