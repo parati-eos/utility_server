@@ -3,30 +3,34 @@ def Response_json_to_array(data):
     user_id = data.get('user', {}).get('userId', '')
     form_id = data.get('user', {}).get('submissionId', '')
 
-    company_name = data.get('about', {}).get('companyName', '')
-    company_logo = data.get('about', {}).get('companyLogo', '')
-    primary_r = data.get('about', {}).get('primaryColorR','')
-    primary_g = data.get('about', {}).get('primaryColorG', '')
-    primary_b = data.get('about', {}).get('primaryColorB', '')
-    primary_color_check = data.get('about', {}).get('primaryColorCheck', 0)
-    secondary_r = data.get('about', {}).get('secondaryColorR', '')
-    secondary_g = data.get('about', {}).get('secondaryColorG', '')
-    secondary_b = data.get('about', {}).get('secondaryColorB', '')
-    secondary_color_check = data.get('about', {}).get('secondaryColorCheck', 0)
-    p100 = data.get('about', {}).get('colorP100', '')
-    p75_s25 = data.get('about', {}).get('colorP75_S25', '')
-    p50_s50 = data.get('about', {}).get('colorP50_S50', '')
-    p25_s75 = data.get('about', {}).get('colorP25_S75', '')
-    s100 = data.get('about', {}).get('colorS100', '')
-    f_s100 = data.get('about', {}).get('colorF_S100', '')
-    f_p100 = data.get('about', {}).get('colorF_P100', '')
-    f_p75s25 = data.get('about', {}).get('colorF_P75S25', '')
-    f_p50s50 = data.get('about', {}).get('colorF_P50S50', '')
-    f_p25s75 = data.get('about', {}).get('colorF_P25S75', '')
-    scl = data.get('about', {}).get('SCL', '')
-    scd = data.get('about', {}).get('SCD', '')
-    tag_line = data.get('about', {}).get('tagLine', '')
-    cover_image = data.get('about', {}).get('coverImage', '')
+    #==============================Cover=========================================
+
+    company_name = data.get('cover', {}).get('companyName', '')
+    company_logo = data.get('cover', {}).get('companyLogo', '')
+    primary_r = data.get('cover', {}).get('primaryColorR','')
+    primary_g = data.get('cover', {}).get('primaryColorG', '')
+    primary_b = data.get('cover', {}).get('primaryColorB', '')
+    primary_color_check = data.get('cover', {}).get('primaryColorCheck', 0)
+    secondary_r = data.get('cover', {}).get('secondaryColorR', '')
+    secondary_g = data.get('cover', {}).get('secondaryColorG', '')
+    secondary_b = data.get('cover', {}).get('secondaryColorB', '')
+    secondary_color_check = data.get('cover', {}).get('secondaryColorCheck', 0)
+    p100 = data.get('cover', {}).get('colorP100', '')
+    p75_s25 = data.get('cover', {}).get('colorP75_S25', '')
+    p50_s50 = data.get('cover', {}).get('colorP50_S50', '')
+    p25_s75 = data.get('cover', {}).get('colorP25_S75', '')
+    s100 = data.get('cover', {}).get('colorS100', '')
+    f_s100 = data.get('cover', {}).get('colorF_S100', '')
+    f_p100 = data.get('cover', {}).get('colorF_P100', '')
+    f_p75s25 = data.get('cover', {}).get('colorF_P75S25', '')
+    f_p50s50 = data.get('cover', {}).get('colorF_P50S50', '')
+    f_p25s75 = data.get('cover', {}).get('colorF_P25S75', '')
+    scl = data.get('cover', {}).get('SCL', '')
+    scd = data.get('cover', {}).get('SCD', '')
+    tag_line = data.get('cover', {}).get('tagLine', '')
+    cover_image = data.get('cover', {}).get('coverImage', '')
+
+    #==============================About=========================================
     about_title = data.get('about', {}).get('aboutTitle', '')
     vision = data.get('about', {}).get('aboutVision', '')
     about_gpt = data.get('about', {}).get('aboutGPT', '')
@@ -48,7 +52,7 @@ def Response_json_to_array(data):
     about_5 = data.get('about', {}).get('about5', '')
     about_image_url = data.get('about', {}).get('aboutImageURL', '')
 
-    #problem
+    #==============================Problem=========================================
     problem_title = data.get('problemDescription', {}).get('problemTitle', '')
     problem_statement = data.get('problemDescription', {}).get('problemStatement', '')
     problem_gpt = data.get('problemDescription', {}).get('problemGPT', '')
@@ -78,7 +82,8 @@ def Response_json_to_array(data):
     problem_icon_5 = data.get('problemDescription', {}).get('problemIcon5', '')
     problem_icon_6 = data.get('problemDescription', {}).get('problemIcon6', '')
 
-    #solution
+    #==============================Solution=========================================
+
     iterative_solution = data.get('solutionDescription', {}).get('iterativeSolution', '')
     solution_title = data.get('solutionDescription', {}).get('solutionTitle', '')
     solution_statement = data.get('solutionDescription', {}).get('solutionStatement', '')
@@ -108,8 +113,11 @@ def Response_json_to_array(data):
     solution_icon_4 = data.get('solutionDescription', {}).get('solutionIcon4', '')
     solution_icon_5 = data.get('solutionDescription', {}).get('solutionIcon5', '')
     solution_icon_6 = data.get('solutionDescription', {}).get('solutionIcon6', '')
-    # Market Information
+
+    #==============================Market=========================================
+
     industry = data.get('market', {}).get('industry', '')
+    sector = data.get('market', {}).get('sector', '')
     market_title_gpt = data.get('market', {}).get('marketTitleGPT', '')
     market_title = data.get('market', {}).get('marketTitle', '')
     market_description = data.get('market', {}).get('marketDescription', '')
@@ -139,7 +147,8 @@ def Response_json_to_array(data):
     sam_growth_rate = data.get('market', {}).get('SAMGrowthRate', '')
     sam_future = data.get('market', {}).get('SAMFuture', '')
 
-    # Product Information
+    #==============================Product=========================================
+
     product_title = data.get('product', {}).get('productTitle', '')
     product_overview = data.get('product', {}).get('productOverview', '')
     feature_gpt = data.get('product', {}).get('featureGPT', '')
@@ -168,34 +177,47 @@ def Response_json_to_array(data):
     feature_icon_4 = data.get('product', {}).get('featureIcon4', '')
     feature_icon_5 = data.get('product', {}).get('featureIcon5', '')
     feature_icon_6 = data.get('product', {}).get('featureIcon6', '')
-    product_roadmap_title = data.get('product', {}).get('productRoadmapTitle', '')
-    phase_gpt = data.get('product', {}).get('phaseGPT', '')
-    phase_gpt_cleaned = data.get('product', {}).get('phaseGPTCleaned', '')
-    phase_gpt_1 = data.get('product', {}).get('phaseGPT1', '')
-    phase_gpt_2 = data.get('product', {}).get('phaseGPT2', '')
-    phase_gpt_3 = data.get('product', {}).get('phaseGPT3', '')
-    phase_header_1_name = data.get('product', {}).get('phaseHeader1Name', '')
-    phase_header_2_name = data.get('product', {}).get('phaseHeader2Name', '')
-    phase_header_3_name = data.get('product', {}).get('phaseHeader3Name', '')
-    phase_description_1 = data.get('product', {}).get('phaseDescription1', '')
-    phase_description_2 = data.get('product', {}).get('phaseDescription2', '')
-    phase_description_3 = data.get('product', {}).get('phaseDescription3', '')
-    phase_features_1 = data.get('product', {}).get('phaseFeatures1', '')
-    phase_features_2 = data.get('product', {}).get('phaseFeatures2', '')
-    phase_features_3 = data.get('product', {}).get('phaseFeatures3', '')
-    inputs = data.get('product', {}).get('inputs', '')
-    technology_platform = data.get('product', {}).get('technologyPlatform', '')
-    value_based_output = data.get('product', {}).get('valueBasedOutput', '')
+
+    #==============================Product Roadmap=========================================
+
+    product_roadmap_title = data.get('productRoadMap', {}).get('productRoadmapTitle', 'Title')
+    phase_gpt = data.get('productRoadMap', {}).get('phaseGPT', '')
+    phase_gpt_cleaned = data.get('productRoadMap', {}).get('phaseGPTCleaned', '')
+    phase_gpt_1 = data.get('productRoadMap', {}).get('phaseGPT1', '')
+    phase_gpt_2 = data.get('productRoadMap', {}).get('phaseGPT2', '')
+    phase_gpt_3 = data.get('productRoadMap', {}).get('phaseGPT3', '')
+    phase_header_1_name = data.get('productRoadMap', {}).get('phaseHeader1Name', '')
+    phase_header_2_name = data.get('productRoadMap', {}).get('phaseHeader2Name', '')
+    phase_header_3_name = data.get('productRoadMap', {}).get('phaseHeader3Name', '')
+    phase_description_1 = data.get('productRoadMap', {}).get('phaseDescription1', '')
+    phase_description_2 = data.get('productRoadMap', {}).get('phaseDescription2', '')
+    phase_description_3 = data.get('productRoadMap', {}).get('phaseDescription3', '')
+    phase_features_1 = data.get('productRoadMap', {}).get('phaseFeatures1', '')
+    phase_features_2 = data.get('productRoadMap', {}).get('phaseFeatures2', '')
+    phase_features_3 = data.get('productRoadMap', {}).get('phaseFeatures3', '')
+
+    #==============================System Architecture=========================================
+
+    inputs = data.get('systemArchitecture', {}).get('inputs', '')
+    technology_platform = data.get('systemArchitecture', {}).get('technologyPlatform', '')
+    value_based_output = data.get('systemArchitecture', {}).get('valueBasedOutput', '')
+
+   #==============================Mobile Screenshoots=========================================
+
     mobile_screenshots_description = data.get('mobileScreenshots', {}).get('mobileScreenshotsDescription', '')
     mobile_screenshot_1 = data.get('mobileScreenshots', {}).get('mobileScreenshot1', '')
     mobile_screenshot_2 = data.get('mobileScreenshots', {}).get('mobileScreenshot2', '')
     mobile_screenshot_3 = data.get('mobileScreenshots', {}).get('mobileScreenshot3', '')
+
+   #==============================Web ScreenShots=========================================
+
     web_screenshots_description = data.get('webScreenshots', {}).get('webScreenshotsDescription', '')
     web_screenshot_1 = data.get('webScreenshots', {}).get('webScreenshot1', '')
     web_screenshot_2 = data.get('webScreenshots', {}).get('webScreenshot2', '')
     web_screenshot_3 = data.get('webScreenshots', {}).get('webScreenshot3', '')
 
-    # Business Model Information
+    #==============================Business Model=========================================
+
     revenue_model = data.get('businessModel', {}).get('revenueModel', '')
     revenue_model_image = data.get('businessModel', {}).get('revenueModelImage', '')
     revenue_stream_gpt = data.get('businessModel', {}).get('revenueStreamGPT', '')
@@ -217,42 +239,49 @@ def Response_json_to_array(data):
     stream_icon_3 = data.get('businessModel', {}).get('streamIcon3', '')
     stream_icon_4 = data.get('businessModel', {}).get('streamIcon4', '')
 
-    # Go To Market (GTM) Information
-    stakeholders_title = data.get('goToMarket', {}).get('stakeholdersTitle', '')
-    stakeholder_gpt = data.get('goToMarket', {}).get('stakeholderGPT', '')
-    stakeholder_gpt_cleaned = data.get('goToMarket', {}).get('stakeholderGPTCleaned', '')
-    stakeholder_gpt_1 = data.get('goToMarket', {}).get('stakeholderGPT1', '')
-    stakeholder_gpt_2 = data.get('goToMarket', {}).get('stakeholderGPT2', '')
-    stakeholder_gpt_3 = data.get('goToMarket', {}).get('stakeholderGPT3', '')
-    stakeholder_gpt_4 = data.get('goToMarket', {}).get('stakeholderGPT4', '')
-    stakeholder_1 = data.get('goToMarket', {}).get('stakeholder1', '')
-    stakeholder_2 = data.get('goToMarket', {}).get('stakeholder2', '')
-    stakeholder_3 = data.get('goToMarket', {}).get('stakeholder3', '')
-    stakeholder_4 = data.get('goToMarket', {}).get('stakeholder4', '')
-    benefits_1 = data.get('goToMarket', {}).get('benefits1', '')
-    benefits_2 = data.get('goToMarket', {}).get('benefits2', '')
-    benefits_3 = data.get('goToMarket', {}).get('benefits3', '')
-    benefits_4 = data.get('goToMarket', {}).get('benefits4', '')
-    customer_profile_icon_1 = data.get('goToMarket', {}).get('customerProfileIcon1', '')
-    customer_profile_icon_2 = data.get('goToMarket', {}).get('customerProfileIcon2', '')
-    customer_profile_icon_3 = data.get('goToMarket', {}).get('customerProfileIcon3', '')
-    customer_profile_icon_4 = data.get('goToMarket', {}).get('customerProfileIcon4', '')
-    customer_profile_cover_image = data.get('goToMarket', {}).get('customerProfileCoverImage', '')
-    persona = data.get('goToMarket', {}).get('persona', '')
-    persona_category_gpt = data.get('goToMarket', {}).get('personaCategoryGPT', '')
-    persona_category_gpt_cleaned = data.get('goToMarket', {}).get('personaCategoryGPTCleaned', '')
-    persona_category_gpt_1 = data.get('goToMarket', {}).get('personaCategoryGPT1', '')
-    persona_category_gpt_2 = data.get('goToMarket', {}).get('personaCategoryGPT2', '')
-    persona_category_gpt_3 = data.get('goToMarket', {}).get('personaCategoryGPT3', '')
-    persona_header_1 = data.get('goToMarket', {}).get('personaHeader1', '')
-    persona_header_2 = data.get('goToMarket', {}).get('personaHeader2', '')
-    persona_header_3 = data.get('goToMarket', {}).get('personaHeader3', '')
-    persona_description_1 = data.get('goToMarket', {}).get('personaDescription1', '')
-    persona_description_2 = data.get('goToMarket', {}).get('personaDescription2', '')
-    persona_description_3 = data.get('goToMarket', {}).get('personaDescription3', '')
-    persona_icon_1 = data.get('goToMarket', {}).get('personaIcon1', '')
-    persona_icon_2 = data.get('goToMarket', {}).get('personaIcon2', '')
-    persona_icon_3 = data.get('goToMarket', {}).get('personaIcon3', '')
+    #==============================stakeHolders=========================================
+
+    stakeholders_title = data.get('keyStakeholders', {}).get('stakeholdersTitle', '')
+    stakeholder_gpt = data.get('keyStakeholders', {}).get('stakeholderGPT', '')
+    stakeholder_gpt_cleaned = data.get('keyStakeholders', {}).get('stakeholderGPTCleaned', '')
+    stakeholder_gpt_1 = data.get('keyStakeholders', {}).get('stakeholderGPT1', '')
+    stakeholder_gpt_2 = data.get('keyStakeholders', {}).get('stakeholderGPT2', '')
+    stakeholder_gpt_3 = data.get('keyStakeholders', {}).get('stakeholderGPT3', '')
+    stakeholder_gpt_4 = data.get('keyStakeholders', {}).get('stakeholderGPT4', '')
+    stakeholder_1 = data.get('keyStakeholders', {}).get('stakeholder1', '')
+    stakeholder_2 = data.get('keyStakeholders', {}).get('stakeholder2', '')
+    stakeholder_3 = data.get('keyStakeholders', {}).get('stakeholder3', '')
+    stakeholder_4 = data.get('keyStakeholders', {}).get('stakeholder4', '')
+    benefits_1 = data.get('keyStakeholders', {}).get('benefits1', '')
+    benefits_2 = data.get('keyStakeholders', {}).get('benefits2', '')
+    benefits_3 = data.get('keyStakeholders', {}).get('benefits3', '')
+    benefits_4 = data.get('keyStakeholders', {}).get('benefits4', '')
+
+    #==============================Customer Persona=========================================
+
+    customer_profile_icon_1 = data.get('customerPersona', {}).get('customerProfileIcon1', '')
+    customer_profile_icon_2 = data.get('customerPersona', {}).get('customerProfileIcon2', '')
+    customer_profile_icon_3 = data.get('customerPersona', {}).get('customerProfileIcon3', '')
+    customer_profile_icon_4 = data.get('customerPersona', {}).get('customerProfileIcon4', '')
+    customer_profile_cover_image = data.get('customerPersona', {}).get('customerProfileCoverImage', '')
+    persona = data.get('customerPersona', {}).get('persona', '')
+    persona_category_gpt = data.get('customerPersona', {}).get('personaCategoryGPT', '')
+    persona_category_gpt_cleaned = data.get('customerPersona', {}).get('personaCategoryGPTCleaned', '')
+    persona_category_gpt_1 = data.get('customerPersona', {}).get('personaCategoryGPT1', '')
+    persona_category_gpt_2 = data.get('customerPersona', {}).get('personaCategoryGPT2', '')
+    persona_category_gpt_3 = data.get('customerPersona', {}).get('personaCategoryGPT3', '')
+    persona_header_1 = data.get('customerPersona', {}).get('personaHeader1', '')
+    persona_header_2 = data.get('customerPersona', {}).get('personaHeader2', '')
+    persona_header_3 = data.get('customerPersona', {}).get('personaHeader3', '')
+    persona_description_1 = data.get('customerPersona', {}).get('personaDescription1', '')
+    persona_description_2 = data.get('customerPersona', {}).get('personaDescription2', '')
+    persona_description_3 = data.get('customerPersona', {}).get('personaDescription3', '')
+    persona_icon_1 = data.get('customerPersona', {}).get('personaIcon1', '')
+    persona_icon_2 = data.get('customerPersona', {}).get('personaIcon2', '')
+    persona_icon_3 = data.get('customerPersona', {}).get('personaIcon3', '')
+
+    #==============================GTM=========================================
+
     gtm_title = data.get('goToMarket', {}).get('gtmTitle', '')
     gtm_overview = data.get('goToMarket', {}).get('gtmOverview', '')
     gtm_cover_image_landscape = data.get('goToMarket', {}).get('gtmCoverImageLandscape', '')
@@ -279,6 +308,8 @@ def Response_json_to_array(data):
     gtm_icon_4 = data.get('goToMarket', {}).get('gtmIcon4', '')
     gtm_icon_5 = data.get('goToMarket', {}).get('gtmIcon5', '')
 
+    #==============================Track Record=========================================
+
     track_record_title = data.get('trackRecord', {}).get('trackRecordTitle', '')
     phase_timeline_1 = data.get('trackRecord', {}).get('phaseTimeline1', '')
     phase_timeline_2 = data.get('trackRecord', {}).get('phaseTimeline2', '')
@@ -290,12 +321,17 @@ def Response_json_to_array(data):
     traction_phase_description_2 = data.get('trackRecord', {}).get('tractionPhaseDescription2', '')
     traction_phase_description_3 = data.get('trackRecord', {}).get('tractionPhaseDescription3', '')
 
+
+    #==============================Case Study=========================================
+
     case_study_title = data.get('caseStudies', {}).get('caseStudyTitle', '')
     case_study = data.get('caseStudies', {}).get('caseStudy', '')
     challenges = data.get('caseStudies', {}).get('challenges', '')
     solution = data.get('caseStudies', {}).get('solution', '')
     outcome = data.get('caseStudies', {}).get('outcome', '')
     case_study_cover_image = data.get('caseStudies', {}).get('caseStudyCoverImage', '')
+
+    #==============================Testimonials=========================================
 
     testimonial_1 = data.get('testimonials', {}).get('testimonial1', '')
     testimonial_name_1 = data.get('testimonials', {}).get('testimonialName1', '')
@@ -309,6 +345,8 @@ def Response_json_to_array(data):
     testimonial_4 = data.get('testimonials', {}).get('testimonial4', '')
     testimonial_name_4 = data.get('testimonials', {}).get('testimonialName4', '')
     designation_4 = data.get('testimonials', {}).get('designation4', '')
+
+    #==============================Competitors=========================================
 
     company_1 = data.get('competitors', {}).get('company1', '')
     company_2 = data.get('competitors', {}).get('company2', '')
@@ -370,6 +408,8 @@ def Response_json_to_array(data):
     company_7_attribute_4 = data.get('competitors', {}).get('company7Attribute4', '')
     company_7_attribute_5 = data.get('competitors', {}).get('company7Attribute5', '')
 
+   #==============================CompetitiveDiff=========================================
+
     differentiation_title = data.get('competitiveDiff', {}).get('differentiationTitle', '')
     differentiation_gpt = data.get('competitiveDiff', {}).get('differentiationGPT', '')
     differentiation_gpt_cleaned = data.get('competitiveDiff', {}).get('differentiationGPTCleaned', '')
@@ -397,6 +437,9 @@ def Response_json_to_array(data):
     competition_icon_4 = data.get('competitiveDiff', {}).get('competitionIcon4', '')
     competition_icon_5 = data.get('competitiveDiff', {}).get('competitionIcon5', '')
     competition_icon_6 = data.get('competitiveDiff', {}).get('competitionIcon6', 'competition_icon_6')
+
+    #==============================Team=========================================
+
     team_title = data.get('teamMembers', {}).get('teamTitle', 'team_title')
     name_1 = data.get('teamMembers', {}).get('name1', '')
     designation_title_1 = data.get('teamMembers', {}).get('designationTitle1', '')
@@ -428,6 +471,8 @@ def Response_json_to_array(data):
     experience_6 = data.get('teamMembers', {}).get('experience6', '')
     linkedin_6 = data.get('teamMembers', {}).get('linkedin6', 'linkedin_6')
     image_6 = data.get('teamMembers', {}).get('image6', '')
+
+    #==============================Financial=========================================
 
     financials_title = data.get('financialInfo', {}).get('financialTitle', '')
     financial_snapshot = data.get('financialInfo', {}).get('financialSnapshot', '')
@@ -461,6 +506,8 @@ def Response_json_to_array(data):
     business_operations = data.get('financialInfo', {}).get('businessOperations', '')
     team_salaries = data.get('financialInfo', {}).get('teamSalaries', '')
 
+    #==============================Contact=========================================
+
     contact_email = data.get('contactInfo', {}).get('contactEmail', '')
     contact_phone = data.get('contactInfo', {}).get('contactPhone', '')
     contact_website = data.get('contactInfo', {}).get('contactWebsite', '')
@@ -468,6 +515,9 @@ def Response_json_to_array(data):
     contact_us_cover_image = data.get('contactInfo', {}).get('contactUsCoverImage', '')
     status = ''
     error_fields = ''
+
+#=========================================================================================
+
 
 
     res = [
@@ -572,7 +622,7 @@ def Response_json_to_array(data):
     solution_icon_5,
     solution_icon_6,
     industry,
-    market_title_gpt,
+    sector,
     market_title,
     market_description,
     industry_competitiveness,
