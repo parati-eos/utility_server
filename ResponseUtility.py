@@ -118,6 +118,7 @@ def Response_json_to_array(data):
 
     industry = data.get('market', {}).get('industry', '')
     sector = data.get('market', {}).get('sector', '')
+    graphical= data.get('market', {}).get('graphical', '')
     market_title_gpt = data.get('market', {}).get('marketTitleGPT', '')
     market_title = data.get('market', {}).get('marketTitle', '')
     market_description = data.get('market', {}).get('marketDescription', '')
@@ -546,7 +547,8 @@ def Response_json_to_array(data):
     scl,
     scd,
     tag_line,
-    cover_image,
+    # cover_image,
+    graphical,
     about_title,
     vision,
     about_gpt,
