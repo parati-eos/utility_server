@@ -256,3 +256,8 @@ def handle_crop_image_bottom():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5005)
+    
+    
+    
+    
+    # adarsh
