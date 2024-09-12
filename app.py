@@ -11,6 +11,8 @@ from google.oauth2 import service_account
 from util import json_to_array
 from ResponseUtility import Response_json_to_array
 from datetime import datetime
+from scrapping import fetch_company_data
+import asyncio
 
 app = Flask(__name__)
 CORS(app)
@@ -252,6 +254,17 @@ def handle_crop_image_bottom():
             return jsonify({'error': 'Failed to crop image'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/fetch_company_data', methods=['POST'])
+def fetch_data():
+    data = request.json
+    url = data.get("url")
+    
+    if not url:
+        return jsonify({"error": "No URL provided"}), 400
+
+    result = asyncio.run(fetch_company_data(url))
+    return jsonify(result), 200
 
 
 if __name__ == '__main__':
