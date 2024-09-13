@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
+from webdriver_manager.chrome import ChromeDriverManager
 from gpt import GPT
 
 class WebScraper:
@@ -28,7 +29,7 @@ class WebScraper:
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-gpu")
-            self.driver = webdriver.Chrome(options=chrome_options)
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     def close_driver(self):
         if self.driver:
