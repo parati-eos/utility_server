@@ -19,5 +19,5 @@ google-auth-oauthlib
 google-auth-httplib2
 gunicorn
 selenium
-beautoful4
+beautifulsoup4
 webdriver-manager
